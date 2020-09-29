@@ -3,8 +3,9 @@ class CreatePosts < ActiveRecord::Migration[6.0]
     create_table :posts do |t|
       t.string :title
       t.string :content
-      t.string :author
+      t.string :author, default "Nykarri Williams"
       t.string :img
+      t.text :tags, array: true, default: []
 
       t.timestamps
     end
