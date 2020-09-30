@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Post.create([
+    {title: Faker::Book.title, content: Faker::Lorem.paragraphs(number: 2, supplemental: true), img: Faker::Placeholdit.image,  tags: ['hope', 'test', 'life'], user_id: 1 },
+    {title: Faker::Book.title, content: Faker::Lorem.paragraphs(number: 4, supplemental: true), img: Faker::Placeholdit.image,  tags: ['hope', 'test'], user_id: 1 },
+    {title: Faker::Book.title, content: Faker::Lorem.paragraphs(number: 2, supplemental: true), img: Faker::Placeholdit.image,  tags: ['hope', 'fun', 'life'], user_id: 1 },
+    {title: Faker::Book.title, content: Faker::Lorem.paragraphs(number: 5, supplemental: true), img: Faker::Placeholdit.image,  tags: ['hope', 'life'], user_id: 1 }
+])
+
+puts 'Seeded Database'
