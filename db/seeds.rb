@@ -13,4 +13,8 @@ Post.create([
     {title: Faker::Book.title, content: Faker::Lorem.paragraphs(number: 5, supplemental: true), img: Faker::Placeholdit.image,  tags: ['hope', 'life'], user_id: 1 }
 ])
 
+User.create([
+    {username: 'nawilliams95', password: 'Human_Nature2020', email: 'karri.bonez@gmail.com'}
+])
+
 puts 'Seeded Database'
