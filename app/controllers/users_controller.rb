@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
+  before_action :authenticate_token, except: [:login, :create, :index]
+  before_action :authorize_user, except: [:login, :create, :index]
 
   # GET /users
   def index
@@ -43,7 +45,7 @@ class UsersController < ApplicationController
     user = User.find_by(username: params[:user][:username])                        
     if user && user.authenticate(params[:user][:password])                         
       token = create_token(user.id, user.username) 
-      idcard = current_user(user.id, user.username, user.email)                                
+      idcard = current_user(user.id, user.username, user.email,user.admin)                                
       render json: { status: 200, token: token, idcard: idcard, user: user }                       
     else                                                                           
       render json: { status: 401, message: "Unauthorized" }                        
@@ -77,11 +79,12 @@ class UsersController < ApplicationController
       JWT.encode(payload(id, username), ENV['JWT_SECRET'], 'HS256')
     end
 
-    def current_user(id, username, email) 
+    def current_user(id, username, email, admin) 
      {
         id: id,
         username: username,
-        email: email
+        email: email,
+        admin: admin
       }
     end
 end
