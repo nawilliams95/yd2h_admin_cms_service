@@ -9,18 +9,20 @@ class PostsController < ApplicationController
     end
     render json: { status: 200, posts: @posts}
   end
-
+  
+  #GET 3 random posts
+  def random 
+    @random_posts = Post.all.sample(3)
+    render json: {status: 200, random_posts: @random_posts}
+  end
+  
   # GET /posts/1
   def show
     @fixed_date = date(@post.created_at, @post.updated_at)
     render json: { status: 200, post: @post, fixed_date: @fixed_date }
   end
 
-    #GET 3 random posts
-    def random 
-      @random_posts = Post.all.sample(3)
-      render json: {status: 200, random_posts: @random_posts}
-    end
+  
 
   # POST /posts
   def create

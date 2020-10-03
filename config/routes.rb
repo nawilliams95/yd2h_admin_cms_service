@@ -18,11 +18,12 @@ Rails.application.routes.draw do
 
   #posts
   get '/admin/posts', to: 'posts#index'
+  get '/admin/posts/random', to: 'posts#random'
   post '/admin/posts', to: 'posts#create'
   get '/admin/posts/:id', to: 'posts#show'
   put '/admin/posts/:id', to: 'posts#update'
   delete '/admin/posts/:id', to: 'posts#destroy'
-  get '/admin/posts/random', to: 'posts#random'
+  
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
